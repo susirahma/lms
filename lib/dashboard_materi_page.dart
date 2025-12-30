@@ -188,7 +188,89 @@ class _DashboardMateriPageState extends State<DashboardMateriPage> {
               )
             else if (activeTab == 1)
               // Tugas Dan Kuis Tab
-              const Center(child: Text('Tugas Dan Kuis Content')),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  final tasks = [
+                    {'category': 'QUIZ', 'title': 'Quiz Review 01', 'deadline': '26 Februari 2021 23:59 WIB', 'completed': true, 'icon': Icons.quiz},
+                    {'category': 'Tugas', 'title': 'Tugas 01 - UID Android Mobile Game', 'deadline': '26 Februari 2021 23:59 WIB', 'completed': false, 'icon': Icons.assignment},
+                    {'category': 'Pertemuan 3', 'title': 'Latihan Wireframing', 'deadline': '25 Februari 2021 23:59 WIB', 'completed': true, 'icon': Icons.work},
+                    {'category': 'QUIZ', 'title': 'Quiz Prinsip Desain', 'deadline': '24 Februari 2021 23:59 WIB', 'completed': false, 'icon': Icons.quiz},
+                    {'category': 'Tugas', 'title': 'Tugas 02 - Prototyping App', 'deadline': '23 Februari 2021 23:59 WIB', 'completed': false, 'icon': Icons.assignment},
+                  ];
+                  final task = tasks[index];
+                  return Card(
+                    elevation: 2,
+                    margin: const EdgeInsets.only(bottom: 16),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Stack(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: Colors.lightBlue.shade100,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  task['category'] as String,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  Icon(
+                                    task['icon'] as IconData,
+                                    size: 24,
+                                    color: Colors.grey,
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Text(
+                                      task['title'] as String,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Tenggat Waktu : ${task['deadline']}',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Icon(
+                              (task['completed'] as bool) ? Icons.check_circle : Icons.radio_button_unchecked,
+                              color: (task['completed'] as bool) ? Colors.green : Colors.grey,
+                              size: 24,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
           ],
         ),
       ),
