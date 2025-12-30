@@ -88,8 +88,8 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
               ),
               child: TabBar(
                 controller: _tabController,
-                indicator: const UnderlineTabIndicator(
-                  borderSide: BorderSide(width: 3.0, color: Color(0xFFB11116)),
+                indicator: UnderlineTabIndicator(
+                  borderSide: BorderSide(width: 3.0, color: Colors.grey[800]!),
                 ),
                 labelColor: const Color(0xFFB11116),
                 unselectedLabelColor: Colors.grey,
@@ -191,7 +191,87 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                     ),
                   ),
                   // Kelas Tab
-                  const Center(child: Text('Kelas Content')),
+                  ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      final courses = [
+                        {
+                          'name': 'BAHASA INGGRIS: BUSINESS AND SCIENTIFIC',
+                          'code': 'D4SM-41-GAB1 [ARS]',
+                          'date': 'Tanggal Mulai Monday, 8 February 2021'
+                        },
+                        {
+                          'name': 'DESAIN ANTARMUKA',
+                          'code': 'D4SM-41-DUI1 [ARS]',
+                          'date': 'Tanggal Mulai Monday, 8 February 2021'
+                        },
+                        {
+                          'name': 'KEWARGANEGARAAN',
+                          'code': 'D4SM-41-KWN1 [ARS]',
+                          'date': 'Tanggal Mulai Monday, 8 February 2021'
+                        },
+                        {
+                          'name': 'SISTEM OPERASI',
+                          'code': 'D4SM-41-SOP1 [ARS]',
+                          'date': 'Tanggal Mulai Monday, 8 February 2021'
+                        },
+                        {
+                          'name': 'ALGORITMA DAN PEMROGRAMAN',
+                          'code': 'D4SM-41-ALP1 [ARS]',
+                          'date': 'Tanggal Mulai Monday, 8 February 2021'
+                        },
+                      ];
+                      final course = courses[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF8EBAE3),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    course['name'] as String,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    course['code'] as String,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    course['date'] as String,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                   // Edit Profile Tab
                   const Center(child: Text('Edit Profile Content')),
                 ],
