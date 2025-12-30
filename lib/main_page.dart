@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'profile_page.dart';
+import 'kelas_saya_page.dart';
 import 'notifications_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class _MainPageState extends State<MainPage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    ProfilePage(),
+    KelasSayaPage(),
     NotificationsPage(),
   ];
 
