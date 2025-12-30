@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'help_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,8 +11,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LoginPage(),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
+      ),
+      home: const LoginPage(),
     );
   }
 }
@@ -65,6 +70,21 @@ class WaveClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
+class DiagonalClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height * 0.7);
+    path.lineTo(size.width, size.height * 0.3);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -74,6 +94,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
+
+  void _handleLogin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const HelpPage()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,21 +115,20 @@ class _LoginPageState extends State<LoginPage> {
               child: Stack(
                 children: [
                   ClipPath(
-                    clipper: WaveClipper(),
-                    child: Image.network(
-                      'https://via.placeholder.com/400x300', // Placeholder image
-                      fit: BoxFit.cover,
+                    clipper: DiagonalClipper(),
+                    child: Container(
+                      color: Colors.red.shade700,
                       width: double.infinity,
                       height: 300,
                     ),
                   ),
                   Positioned(
-                    bottom: 20,
+                    bottom: 50,
                     left: MediaQuery.of(context).size.width / 2 - 40,
                     child: const CircleAvatar(
                       radius: 40,
                       backgroundColor: Color(0xFFB71C1C),
-                      child: Icon(Icons.account_circle, color: Colors.white, size: 50),
+                      child: Text('U', style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold)),
                     ),
                   ),
                 ],
@@ -124,7 +150,15 @@ class _LoginPageState extends State<LoginPage> {
                   const TextField(
                     decoration: InputDecoration(
                       labelText: 'Email 365',
-                      border: UnderlineInputBorder(),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -132,7 +166,15 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      border: const UnderlineInputBorder(),
+                      border: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                      ),
                       suffixIcon: IconButton(
                         icon: Icon(
                           _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
@@ -147,12 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const HomeScreen()),
-                      );
-                    },
+                    onPressed: _handleLogin,
                     child: const Text('Log In'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFB71C1C),
@@ -178,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
               clipper: WaveClipper(),
               child: Container(
                 height: 100,
-                color: const Color(0xFFB71C1C),
+                color: const Color(0xFF800000),
               ),
             ),
           ],
