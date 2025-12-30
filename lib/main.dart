@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'help_page.dart';
 import 'home_page.dart';
 import 'profile_page.dart';
+import 'notifications_page.dart';
+import 'main_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -99,9 +101,9 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
 
   void _handleLogin() {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => const MainPage()),
     );
   }
 
