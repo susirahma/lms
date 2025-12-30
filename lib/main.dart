@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'help_page.dart';
+import 'home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -14,6 +15,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,
+        primaryColor: const Color(0xFFB11116),
       ),
       home: const LoginPage(),
     );
@@ -98,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
   void _handleLogin() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const HelpPage()),
+      MaterialPageRoute(builder: (context) => const HomePage()),
     );
   }
 
@@ -127,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                     left: MediaQuery.of(context).size.width / 2 - 40,
                     child: const CircleAvatar(
                       radius: 40,
-                      backgroundColor: Color(0xFFB71C1C),
+                      backgroundColor: Color(0xFFB11116),
                       child: Text('U', style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold)),
                     ),
                   ),
@@ -151,13 +153,13 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       labelText: 'Email 365',
                       border: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                        borderSide: BorderSide(color: Color(0xFFB11116)),
                       ),
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                        borderSide: BorderSide(color: Color(0xFFB11116)),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                        borderSide: BorderSide(color: Color(0xFFB11116)),
                       ),
                     ),
                   ),
@@ -167,13 +169,13 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       labelText: 'Password',
                       border: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                        borderSide: BorderSide(color: Color(0xFFB11116)),
                       ),
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                        borderSide: BorderSide(color: Color(0xFFB11116)),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFFB71C1C)),
+                        borderSide: BorderSide(color: Color(0xFFB11116)),
                       ),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -192,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: _handleLogin,
                     child: const Text('Log In'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFB71C1C),
+                      backgroundColor: const Color(0xFFB11116),
                       shape: const StadiumBorder(),
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shadowColor: Colors.black26,
@@ -201,10 +203,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HelpPage()),
+                      );
+                    },
                     child: const Text(
                       'Bantuan?',
-                      style: TextStyle(color: Color(0xFFB71C1C)),
+                      style: TextStyle(color: Color(0xFFB11116)),
                     ),
                   ),
                 ],
@@ -215,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
               clipper: WaveClipper(),
               child: Container(
                 height: 100,
-                color: const Color(0xFF800000),
+                color: const Color(0xFFB11116),
               ),
             ),
           ],
