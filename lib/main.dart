@@ -4,6 +4,7 @@ import 'help_page.dart';
 import 'home_page.dart';
 import 'profile_page.dart';
 import 'notifications_page.dart';
+import 'pengumuman_page.dart';
 import 'main_page.dart';
 
 void main() {

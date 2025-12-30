@@ -36,8 +36,8 @@ class _MainPageState extends State<MainPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(Icons.school),
+            label: 'Kelas Saya',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),

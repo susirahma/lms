@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'profile_page.dart';
+import 'pengumuman_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -88,6 +89,40 @@ class HomePage extends StatelessWidget {
                       style: GoogleFonts.poppins(color: Colors.white),
                     ),
                   ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            // Announcements
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Pengumuman Terakhir',
+                  style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PengumumanPage()),
+                    );
+                  },
+                  child: Text(
+                    'Lihat Semua',
+                    style: GoogleFonts.poppins(color: Colors.blue),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: const DecorationImage(
+                  image: NetworkImage('https://via.placeholder.com/400x100?text=Pengumuman'),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
