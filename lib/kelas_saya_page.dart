@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dashboard_materi_page.dart';
 
 class KelasSayaPage extends StatelessWidget {
   const KelasSayaPage({super.key});
@@ -49,46 +50,54 @@ class KelasSayaPage extends StatelessWidget {
                   {'name': 'BASIS DATA', 'code': 'D4SM-42-BDT [ARS]', 'progress': 0.80, 'year': '2021/2'},
                 ];
                 final course = courses[index];
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: ListTile(
-                    leading: Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.grey.shade300,
-                      child: const Icon(Icons.book),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          course['year'] as String,
-                          style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey),
-                        ),
-                        Text(
-                          course['name'] as String,
-                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          course['code'] as String,
-                          style: GoogleFonts.poppins(fontSize: 14),
-                        ),
-                      ],
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 8),
-                        LinearProgressIndicator(
-                          value: course['progress'] as double,
-                          backgroundColor: Colors.grey.shade300,
-                          valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFB11116)),
-                        ),
-                        Text(
-                          '${((course['progress'] as double) * 100).toInt()} % Selesai',
-                          style: GoogleFonts.poppins(fontSize: 12),
-                        ),
-                      ],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const DashboardMateriPage()),
+                    );
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: ListTile(
+                      leading: Container(
+                        width: 50,
+                        height: 50,
+                        color: Colors.grey.shade300,
+                        child: const Icon(Icons.book),
+                      ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            course['year'] as String,
+                            style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey),
+                          ),
+                          Text(
+                            course['name'] as String,
+                            style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            course['code'] as String,
+                            style: GoogleFonts.poppins(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 8),
+                          LinearProgressIndicator(
+                            value: course['progress'] as double,
+                            backgroundColor: Colors.grey.shade300,
+                            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFB11116)),
+                          ),
+                          Text(
+                            '${((course['progress'] as double) * 100).toInt()} % Selesai',
+                            style: GoogleFonts.poppins(fontSize: 12),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
