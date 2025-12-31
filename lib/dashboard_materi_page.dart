@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'detail_materi_page.dart';
 
 class DashboardMateriPage extends StatefulWidget {
   const DashboardMateriPage({super.key});
@@ -128,59 +129,67 @@ class _DashboardMateriPageState extends State<DashboardMateriPage> {
                     {'meeting': 'Pertemuan 5', 'title': '05 - Testing dan Iterasi', 'details': '2 URLs, 1 File, 2 Interactive Content', 'completed': false},
                   ];
                   final meeting = meetings[index];
-                  return Card(
-                    elevation: 2,
-                    margin: const EdgeInsets.only(bottom: 16),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Stack(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                decoration: BoxDecoration(
-                                  color: Colors.lightBlue.shade100,
-                                  borderRadius: BorderRadius.circular(12),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const DetailMateriPage()),
+                      );
+                    },
+                    child: Card(
+                      elevation: 2,
+                      margin: const EdgeInsets.only(bottom: 16),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Stack(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.lightBlue.shade100,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Text(
+                                    meeting['meeting'] as String,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
-                                child: Text(
-                                  meeting['meeting'] as String,
+                                const SizedBox(height: 12),
+                                Text(
+                                  meeting['title'] as String,
                                   style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    color: Colors.blue,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                meeting['title'] as String,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                                const SizedBox(height: 8),
+                                Text(
+                                  meeting['details'] as String,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                meeting['details'] as String,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Icon(
-                              Icons.check_circle,
-                              color: (meeting['completed'] as bool) ? Colors.green : Colors.grey,
-                              size: 24,
+                              ],
                             ),
-                          ),
-                        ],
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: Icon(
+                                Icons.check_circle,
+                                color: (meeting['completed'] as bool) ? Colors.green : Colors.grey,
+                                size: 24,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
