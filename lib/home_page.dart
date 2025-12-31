@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'profile_page.dart';
 import 'pengumuman_page.dart';
+import 'tampilan_page_tugas.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -60,35 +61,43 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Upcoming Tasks
-            Card(
-              color: const Color(0xFFB11116),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Tugas Yang Akan Datang',
-                      style: GoogleFonts.poppins(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TampilanPageTugas()),
+                );
+              },
+              child: Card(
+                color: const Color(0xFFB11116),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Tugas Yang Akan Datang',
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA',
-                      style: GoogleFonts.poppins(color: Colors.white),
-                    ),
-                    Text(
-                      'Tugas 01 - UID Android Mobile Game',
-                      style: GoogleFonts.poppins(color: Colors.white),
-                    ),
-                    Text(
-                      'Jumat 26 Februari, 23:59 WIB',
-                      style: GoogleFonts.poppins(color: Colors.white),
-                    ),
-                  ],
+                      const SizedBox(height: 8),
+                      Text(
+                        'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA',
+                        style: GoogleFonts.poppins(color: Colors.white),
+                      ),
+                      Text(
+                        'Tugas 01 - UID Android Mobile Game',
+                        style: GoogleFonts.poppins(color: Colors.white),
+                      ),
+                      Text(
+                        'Jumat 26 Februari, 23:59 WIB',
+                        style: GoogleFonts.poppins(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
