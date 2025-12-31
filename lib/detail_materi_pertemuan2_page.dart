@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'detail_kuis_page.dart';
 
 class DetailMateriPertemuan2Page extends StatefulWidget {
   const DetailMateriPertemuan2Page({super.key});
@@ -221,83 +222,93 @@ class _DetailMateriPertemuan2PageState extends State<DetailMateriPertemuan2Page>
                       },
                     ];
                     final task = tasks[index];
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border(
-                          left: BorderSide(
-                            color: Colors.grey,
-                            width: 4,
+                    return GestureDetector(
+                      onTap: () {
+                        if (task['type'] == 'QUIZ') {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const DetailKuisPage()),
+                          );
+                        }
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border(
+                            left: BorderSide(
+                              color: Colors.grey,
+                              width: 4,
+                            ),
                           ),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            spreadRadius: 1,
-                            blurRadius: 3,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  task['icon'] as IconData,
-                                  color: Colors.grey[600],
-                                  size: 24,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  task['type'] as String,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                                const Spacer(),
-                                Icon(
-                                  (task['checked'] as bool) ? Icons.check_circle : Icons.radio_button_unchecked,
-                                  color: (task['checked'] as bool) ? Colors.green : Colors.grey,
-                                  size: 24,
-                                ),
-                              ],
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.1),
+                              spreadRadius: 1,
+                              blurRadius: 3,
+                              offset: const Offset(0, 2),
                             ),
-                            const SizedBox(height: 8),
-                            Text(
-                              task['title'] as String,
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              task['description'] as String,
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            if (task['deadline'] != '')
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8),
-                                child: Text(
-                                  'Tenggat Waktu: ${task['deadline']}',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ),
                           ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    task['icon'] as IconData,
+                                    color: Colors.grey[600],
+                                    size: 24,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    task['type'] as String,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Icon(
+                                    (task['checked'] as bool) ? Icons.check_circle : Icons.radio_button_unchecked,
+                                    color: (task['checked'] as bool) ? Colors.green : Colors.grey,
+                                    size: 24,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                task['title'] as String,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                task['description'] as String,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              if (task['deadline'] != '')
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: Text(
+                                    'Tenggat Waktu: ${task['deadline']}',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     );
