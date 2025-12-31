@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'document_viewer_page.dart';
+import 'video_player_page.dart';
 
 class DetailMateriPage extends StatefulWidget {
   const DetailMateriPage({super.key});
@@ -176,6 +177,11 @@ class _DetailMateriPageState extends State<DetailMateriPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => const DocumentViewerPage()),
+                          );
+                        } else if (attachment['icon'] == Icons.videocam) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const VideoPlayerPage()),
                           );
                         }
                       },
