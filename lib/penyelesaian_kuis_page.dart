@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'review_jawaban_page.dart';
 
 class PenyelesaianKuisPage extends StatefulWidget {
   const PenyelesaianKuisPage({super.key});
@@ -182,7 +183,10 @@ class _PenyelesaianKuisPageState extends State<PenyelesaianKuisPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Submit quiz
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ReviewJawabanPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF22FF00),
