@@ -66,7 +66,7 @@ class _DetailMateriPertemuan2PageState extends State<DetailMateriPertemuan2Page>
                   ],
                 ),
                 child: Text(
-                  'User Interface Design (UI Design) mencakup dasar-dasar desain antarmuka yang melibatkan elemen visual dan interaksi. Interaction Design fokus pada bagaimana pengguna berinteraksi dengan sistem. Poin penting dalam UI Design meliputi visibility, yang memastikan informasi penting terlihat jelas; feedback, memberikan respons terhadap tindakan pengguna; limitation, membatasi opsi untuk menghindari kebingungan; dan consistency, menjaga keseragaman elemen di seluruh aplikasi. Prinsip-prinsip ini membantu menciptakan pengalaman pengguna yang intuitif dan efisien.',
+                  'Konsep User Interface Design mencakup dasar-dasar desain antarmuka yang efektif. Interaction Design menekankan bagaimana pengguna berinteraksi dengan sistem digital. Poin penting meliputi visibility untuk memastikan informasi penting terlihat jelas, feedback yang memberikan respons langsung terhadap aksi pengguna, limitation untuk membatasi pilihan dan menghindari kebingungan, consistency dalam menjaga keseragaman elemen, serta affordance yang menunjukkan fungsi objek melalui desainnya.',
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.black87,
@@ -196,29 +196,112 @@ class _DetailMateriPertemuan2PageState extends State<DetailMateriPertemuan2Page>
                   },
                 )
               else if (activeTab == 1)
-                // Tugas dan Kuis content (placeholder for now)
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                        offset: const Offset(0, 2),
+                // Tugas dan Kuis List
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 2,
+                  itemBuilder: (context, index) {
+                    final tasks = [
+                      {
+                        'type': 'QUIZ',
+                        'title': 'Quiz Review 01',
+                        'description': 'Kerjakan quiz ini dalam waktu 15 menit.',
+                        'deadline': '26 Februari 2021 23:59 WIB',
+                        'checked': true,
+                        'icon': Icons.quiz,
+                      },
+                      {
+                        'type': 'TUGAS',
+                        'title': 'Tugas 01 - UID Android Mobile Game',
+                        'description': 'Buat desain tampilan untuk game FPS Android Mobile.',
+                        'deadline': '',
+                        'checked': false,
+                        'icon': Icons.assignment,
+                      },
+                    ];
+                    final task = tasks[index];
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border(
+                          left: BorderSide(
+                            color: Colors.grey,
+                            width: 4,
+                          ),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.1),
+                            spreadRadius: 1,
+                            blurRadius: 3,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Text(
-                    'Konten untuk Tugas dan Kuis akan ditampilkan di sini.',
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  task['icon'] as IconData,
+                                  color: Colors.grey[600],
+                                  size: 24,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  task['type'] as String,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Icon(
+                                  (task['checked'] as bool) ? Icons.check_circle : Icons.radio_button_unchecked,
+                                  color: (task['checked'] as bool) ? Colors.green : Colors.grey,
+                                  size: 24,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              task['title'] as String,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              task['description'] as String,
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            if (task['deadline'] != '')
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8),
+                                child: Text(
+                                  'Tenggat Waktu: ${task['deadline']}',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 ),
             ],
           ),
