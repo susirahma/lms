@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'penyelesaian_kuis_page.dart';
 
-class PengerjaanKuisPage extends StatefulWidget {
-  const PengerjaanKuisPage({super.key});
+class PenyelesaianKuisPage extends StatefulWidget {
+  const PenyelesaianKuisPage({super.key});
 
   @override
-  _PengerjaanKuisPageState createState() => _PengerjaanKuisPageState();
+  _PenyelesaianKuisPageState createState() => _PenyelesaianKuisPageState();
 }
 
-class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
-  int currentQuestion = 1;
-  int selectedOption = 0; // 0 for A, 1 for B, etc.
+class _PenyelesaianKuisPageState extends State<PenyelesaianKuisPage> {
+  int selectedOption = 0; // A selected
 
   @override
   Widget build(BuildContext context) {
@@ -56,22 +54,21 @@ class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Question Navigation
+            // Question Navigation Grid
             Wrap(
               spacing: 8.0,
               runSpacing: 8.0,
               children: List.generate(15, (index) {
                 int questionNumber = index + 1;
-                bool isActive = questionNumber == currentQuestion;
+                bool isAnswered = questionNumber < 15;
+                bool isActive = questionNumber == 15;
                 return Container(
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: isActive ? Colors.black : Colors.grey,
-                      width: isActive ? 3 : 1,
-                    ),
+                    color: isAnswered ? const Color(0xFF22FF00) : Colors.white,
+                    border: isActive ? Border.all(color: Colors.grey, width: 2) : null,
                   ),
                   child: Center(
                     child: Text(
@@ -79,7 +76,7 @@ class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: isActive ? Colors.black : Colors.grey,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -89,7 +86,7 @@ class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
             const SizedBox(height: 20),
             // Question Content
             Text(
-              'Soal Nomor $currentQuestion / 15',
+              'Soal Nomor 3 / 15',
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -98,7 +95,7 @@ class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Radio button dapat digunakan untuk menentukan ?',
+              'Dalam perancangan web yang baik, untuk teks yang menyampaikan isi konten digunakan font yang sama di setiap halaman, ini merupakan salah satu tujuan yaitu ?',
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 color: Colors.black87,
@@ -108,6 +105,7 @@ class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
             // Answer Options
             ...List.generate(5, (index) {
               String optionLetter = String.fromCharCode(65 + index); // A, B, C, D, E
+              String optionText = index == 0 ? 'Jenis Kelamin' : 'Opsi $optionLetter'; // Placeholder
               bool isSelected = index == selectedOption;
               return GestureDetector(
                 onTap: () {
@@ -139,16 +137,16 @@ class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: isSelected ? Colors.white : Colors.black,
+                          color: isSelected ? Colors.black : Colors.black,
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          'Opsi $optionLetter', // Placeholder text
+                          optionText,
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            color: isSelected ? Colors.white : Colors.black,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -157,30 +155,56 @@ class _PengerjaanKuisPageState extends State<PengerjaanKuisPage> {
                 ),
               );
             }),
+            const SizedBox(height: 40),
+            // Bottom Navigation Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigate to previous question
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[300],
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  ),
+                  child: Text(
+                    'Soal Sebelum nya.',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Submit quiz
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF22FF00),
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  ),
+                  child: Text(
+                    'Selesai.',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const PenyelesaianKuisPage()),
-          );
-        },
-        backgroundColor: Colors.grey[300],
-        foregroundColor: Colors.black,
-        label: Text(
-          'Soal Selanjutnya',
-          style: GoogleFonts.poppins(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
