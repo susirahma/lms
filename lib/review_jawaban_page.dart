@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'tampilan_kuis_review_page.dart';
 
 class ReviewJawabanPage extends StatelessWidget {
   const ReviewJawabanPage({super.key});
@@ -172,7 +173,12 @@ class ReviewJawabanPage extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const TampilanKuisReviewPage()),
+                            );
+                          },
                           child: Text(
                             'Lihat Soal',
                             style: GoogleFonts.poppins(
@@ -193,7 +199,9 @@ class ReviewJawabanPage extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context); // Back to Quiz Review 1 page with updated score
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF22FF00),
                 foregroundColor: Colors.black,
