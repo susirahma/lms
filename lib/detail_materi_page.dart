@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'document_viewer_page.dart';
 
 class DetailMateriPage extends StatefulWidget {
   const DetailMateriPage({super.key});
@@ -169,29 +170,39 @@ class _DetailMateriPageState extends State<DetailMateriPage> {
                       {'name': 'Best Practice UI Design', 'icon': Icons.link, 'checked': true},
                     ];
                     final attachment = attachments[index];
-                    return Card(
-                      elevation: 2,
-                      margin: const EdgeInsets.only(bottom: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: ListTile(
-                        leading: Icon(
-                          attachment['icon'] as IconData,
-                          color: Colors.grey[600],
-                          size: 28,
+                    return GestureDetector(
+                      onTap: () {
+                        if (attachment['icon'] == Icons.description) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const DocumentViewerPage()),
+                          );
+                        }
+                      },
+                      child: Card(
+                        elevation: 2,
+                        margin: const EdgeInsets.only(bottom: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        title: Text(
-                          attachment['name'] as String,
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                        child: ListTile(
+                          leading: Icon(
+                            attachment['icon'] as IconData,
+                            color: Colors.grey[600],
+                            size: 28,
                           ),
-                        ),
-                        trailing: Icon(
-                          (attachment['checked'] as bool) ? Icons.check_circle : Icons.radio_button_unchecked,
-                          color: (attachment['checked'] as bool) ? Colors.green : Colors.grey,
-                          size: 24,
+                          title: Text(
+                            attachment['name'] as String,
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          trailing: Icon(
+                            (attachment['checked'] as bool) ? Icons.check_circle : Icons.radio_button_unchecked,
+                            color: (attachment['checked'] as bool) ? Colors.green : Colors.grey,
+                            size: 24,
+                          ),
                         ),
                       ),
                     );

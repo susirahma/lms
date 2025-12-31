@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'detail_kuis_page.dart';
+import 'document_viewer_page.dart';
 
 class DetailMateriPertemuan2Page extends StatefulWidget {
   const DetailMateriPertemuan2Page({super.key});
@@ -168,29 +169,39 @@ class _DetailMateriPertemuan2PageState extends State<DetailMateriPertemuan2Page>
                       {'name': 'Principles of User Interface DesignURL', 'icon': Icons.link, 'checked': true},
                     ];
                     final attachment = attachments[index];
-                    return Card(
-                      elevation: 2,
-                      margin: const EdgeInsets.only(bottom: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // Very rounded corners
-                      ),
-                      child: ListTile(
-                        leading: Icon(
-                          attachment['icon'] as IconData,
-                          color: Colors.grey[600],
-                          size: 28,
+                    return GestureDetector(
+                      onTap: () {
+                        if (attachment['icon'] == Icons.description) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const DocumentViewerPage()),
+                          );
+                        }
+                      },
+                      child: Card(
+                        elevation: 2,
+                        margin: const EdgeInsets.only(bottom: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20), // Very rounded corners
                         ),
-                        title: Text(
-                          attachment['name'] as String,
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                        child: ListTile(
+                          leading: Icon(
+                            attachment['icon'] as IconData,
+                            color: Colors.grey[600],
+                            size: 28,
                           ),
-                        ),
-                        trailing: Icon(
-                          Icons.check_circle,
-                          color: Colors.green,
-                          size: 24,
+                          title: Text(
+                            attachment['name'] as String,
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.check_circle,
+                            color: Colors.green,
+                            size: 24,
+                          ),
                         ),
                       ),
                     );
