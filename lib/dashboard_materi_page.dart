@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'detail_materi_page.dart';
+import 'detail_materi_pertemuan2_page.dart';
 
 class DashboardMateriPage extends StatefulWidget {
   const DashboardMateriPage({super.key});
@@ -131,9 +132,18 @@ class _DashboardMateriPageState extends State<DashboardMateriPage> {
                   final meeting = meetings[index];
                   return GestureDetector(
                     onTap: () {
+                      Widget page;
+                      if (index == 0) {
+                        page = const DetailMateriPage();
+                      } else if (index == 1) {
+                        page = const DetailMateriPertemuan2Page();
+                      } else {
+                        // Placeholder for other meetings
+                        page = const DetailMateriPage(); // Or a generic page
+                      }
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const DetailMateriPage()),
+                        MaterialPageRoute(builder: (context) => page),
                       );
                     },
                     child: Card(
