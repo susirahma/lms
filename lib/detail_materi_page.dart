@@ -66,7 +66,7 @@ class _DetailMateriPageState extends State<DetailMateriPage> {
                   ],
                 ),
                 child: Text(
-                  'User Interface Design (UI Design) adalah proses merancang antarmuka pengguna untuk aplikasi atau situs web agar mudah digunakan dan menarik secara visual. Prinsip-prinsip dasar UI Design meliputi konsistensi, hierarki visual, feedback, dan kemudahan navigasi. Konsistensi memastikan elemen-elemen seperti tombol, ikon, dan tipografi seragam di seluruh aplikasi. Hierarki visual membantu pengguna memahami prioritas informasi melalui ukuran, warna, dan posisi. Feedback memberikan respons langsung terhadap interaksi pengguna, seperti animasi saat tombol ditekan. Kemudahan navigasi memungkinkan pengguna bergerak dengan intuitif antar halaman. Selain itu, UI Design harus mempertimbangkan aksesibilitas, memastikan aplikasi dapat digunakan oleh semua orang termasuk yang memiliki disabilitas. Penggunaan warna yang tepat, kontras yang baik, dan ukuran teks yang readable sangat penting. Dalam era digital saat ini, UI Design yang baik tidak hanya meningkatkan pengalaman pengguna tetapi juga berkontribusi pada kesuksesan produk secara keseluruhan.',
+                  'Antarmuka pengguna harus memperhatikan prinsip desain agar menarik secara visual dan mendukung pengguna dalam berinteraksi dengan aplikasi. Materi ini merupakan review untuk bekal materi User Experience, yang mencakup dasar-dasar desain antarmuka yang efektif dan intuitif.',
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.black87,
@@ -157,13 +157,16 @@ class _DetailMateriPageState extends State<DetailMateriPage> {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 4,
+                  itemCount: 7,
                   itemBuilder: (context, index) {
                     final attachments = [
-                      {'name': 'Zoom Meeting', 'icon': Icons.link, 'checked': true},
+                      {'name': 'Zoom Meeting Syncronous', 'icon': Icons.link, 'checked': true},
+                      {'name': 'Pengantar User Interface Design', 'icon': Icons.description, 'checked': false},
+                      {'name': 'Empat Teori Dasar Antarmuka Pengguna', 'icon': Icons.description, 'checked': false},
+                      {'name': 'Empat Teori Dasar Antarmuka Pengguna', 'icon': Icons.description, 'checked': true},
+                      {'name': 'User Interface Design for Beginner', 'icon': Icons.videocam, 'checked': true},
                       {'name': '20 Prinsip Desain', 'icon': Icons.link, 'checked': true},
-                      {'name': 'User Interface Design for Beginner', 'icon': Icons.videocam, 'checked': false},
-                      {'name': 'Panduan UI Design.pdf', 'icon': Icons.description, 'checked': false},
+                      {'name': 'Best Practice UI Design', 'icon': Icons.link, 'checked': true},
                     ];
                     final attachment = attachments[index];
                     return Card(
@@ -195,28 +198,35 @@ class _DetailMateriPageState extends State<DetailMateriPage> {
                   },
                 )
               else if (activeTab == 1)
-                // Tugas dan Kuis content (placeholder for now)
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                        offset: const Offset(0, 2),
+                // Tugas dan Kuis Empty State
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 200,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: const Icon(
+                          Icons.sentiment_satisfied,
+                          size: 100,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        'Tidak Ada Tugas Dan Kuis Hari Ini',
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
-                  ),
-                  child: Text(
-                    'Konten untuk Tugas dan Kuis akan ditampilkan di sini.',
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
             ],
